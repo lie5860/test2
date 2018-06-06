@@ -2,7 +2,6 @@ package com.stylefeng.guns.core.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
 /**
  * MD5加密类（封装jdk自带的md5加密方法）
  *
@@ -11,6 +10,7 @@ import java.security.NoSuchAlgorithmException;
  */
 public class MD5Util {
 
+	
     public static String encrypt(String source) {
         return encodeMd5(source.getBytes());
     }

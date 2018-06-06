@@ -78,9 +78,12 @@ public class Contrast {
                 if ("serialVersionUID".equals(field.getName())) {
                     continue;
                 }
+                //获得字段get方法
                 PropertyDescriptor pd = new PropertyDescriptor(field.getName(), clazz);
                 Method getMethod = pd.getReadMethod();
+                //获取到pojo1的字段（POJO1 是实际对象）
                 Object o1 = getMethod.invoke(pojo1);
+                //获取pojo2的字段（POJO2是MAP对象）
                 Object o2 = pojo2.get(StrKit.firstCharToLowerCase(getMethod.getName().substring(3)));
                 if (o1 == null || o2 == null) {
                     continue;
@@ -196,8 +199,11 @@ public class Contrast {
             }
             return StrKit.removeSuffix(sb.toString(), ",");
         } else {
+        	//获得主键字段值的翻译
             String fieldWarpperMethodName = dictMap.getFieldWarpperMethodName(key);
+            //获得主键字段在网络请求中的值
             String value = requests.get(key);
+            //如果值翻译存在 则包装
             if (fieldWarpperMethodName != null) {
                 Object valueWarpper = DictFieldWarpperFactory.createFieldWarpper(value, fieldWarpperMethodName);
                 sb.append(dictMap.get(key) + "=" + valueWarpper);

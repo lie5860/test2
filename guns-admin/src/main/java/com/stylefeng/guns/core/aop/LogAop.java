@@ -99,7 +99,7 @@ public class LogAop {
             AbstractDictMap dictMap = (AbstractDictMap) dictClass.newInstance();
             msg = Contrast.parseMutiKey(dictMap,key,parameters);
         }
-
+        //异步保存到数据库 不占用业务处理时间
         LogManager.me().executeLog(LogTaskFactory.bussinessLog(user.getId(), bussinessName, className, methodName, msg));
     }
 }
